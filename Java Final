@@ -1,0 +1,111 @@
+// 1. INTERFACE
+// Layihədəki bəzi ödənişlərin geri qaytarıla biləcəyini simulyasiya edir.
+interface Refundable {
+    void refund(double amount);
+}
+
+// 2. ABSTRACT CLASS
+// Birbaşa obyekti yaradıla bilməz. Ödənişlərin ortaq şablonudur.
+abstract class Payment {
+    protected double amount;
+
+    public Payment(double amount) {
+        this.amount = amount;
+    }
+
+    // Abstract metod - Gövdəsi olmur, alt klasslar bunu mütləq reallaşdırmalıdır (Polymorphism)
+    public abstract void processPayment();
+
+    // Normal metod - Alt klasslar olduğu kimi istifadə edə bilər
+    public void showReceipt() {
+        System.out.println("Ödəniş məbləği: " + amount + " AZN");
+    }
+}
+
+// 3. INHERITANCE & POLYMORPHISM (Kredit Kartı ilə Ödəniş)
+// Payment klassından miras alır (Inheritance) və Refundable interfeysini tətbiq edir
+class CreditCardPayment extends Payment implements Refundable {
+    private String cardNumber;
+
+    public CreditCardPayment(double amount, String cardNumber) {
+        super(amount); // Atanın (Payment) constructor-unu çağırır
+        this.cardNumber = cardNumber;
+    }
+
+    // Polymorphism: Atadan gələn abstract metodu özünə uyğun doldurur (Overriding)
+    @Override
+    public void processPayment() {
+        System.out.println(cardNumber + " nömrəli kartdan " + amount + " AZN ödəniş uğurla tamamlandı.");
+    }
+
+    // Interface-dən gələn metodun reallaşdırılması
+    @Override
+    public void refund(double amount) {
+        System.out.println(amount + " AZN məbləğ " + cardNumber + " nömrəli karta geri qaytarıldı.");
+    }
+}
+
+// 4. INHERITANCE (PayPal ilə Ödəniş)
+class PayPalPayment extends Payment {
+    private String email;
+
+    public PayPalPayment(double amount, String email) {
+        super(amount);
+        this.email = email;
+    }
+
+    // Polymorphism: Eyni metodu PayPal-a uyğun fərqli şəkildə işlədir (Overriding)
+    @Override
+    public void processPayment() {
+        System.out.println(email + " hesabı vasitəsilə " + amount + " AZN ödəniş qəbul edildi.");
+    }
+}
+
+// 5. NORMAL CLASS
+// Sadə bir məhsul klassı
+class Product {
+    private String name;
+    private double price;
+
+    public Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public String getName() { return name; }
+    public double getPrice() { return price; }
+}
+
+// 6. MAIN CLASS (Proqramın başladığı yer)
+public class Main {
+    public static void main(String[] args) {
+        // Normal Class istifadəsi
+        Product laptop = new Product("ASUS ROG Laptop", 2500.0);
+        System.out.println("Məhsul: " + laptop.getName() + " | Qiymət: " + laptop.getPrice() + " AZN");
+        System.out.println("------------------------------------------------");
+
+        // POLYMORPHISM NÜMAYİŞİ:
+        // Eyni "Payment" tipində olan dəyişənlər fərqli obyektlər kimi davranır.
+        Payment payment1 = new CreditCardPayment(laptop.getPrice(), "4169-XXXX-XXXX-1234");
+        Payment payment2 = new PayPalPayment(150.0, "user@email.com");
+
+        // Kredit kartı ödənişi işə düşür
+        payment1.processPayment(); 
+        payment1.showReceipt();
+        
+        System.out.println("------------------------------------------------");
+
+        // PayPal ödənişi işə düşür
+        payment2.processPayment();
+        payment2.showReceipt();
+
+        System.out.println("------------------------------------------------");
+
+        // INTERFACE NÜMAYİŞİ:
+        // payment1 obyektini Refundable interfeysinə cast edərək geri qaytarma funksiyasını çağırırıq
+        if (payment1 instanceof Refundable) {
+            Refundable refundablePayment = (Refundable) payment1;
+            refundablePayment.refund(500.0); // Məsələn, 500 AZN keşbek və ya geri qaytarılma
+        }
+    }
+}
