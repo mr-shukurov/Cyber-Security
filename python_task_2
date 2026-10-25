@@ -1,0 +1,51 @@
+"--------------Task A-----------------"
+prices = [15.5, 42.0, 8.9, 99.0, 21.5]
+
+price_range = max(prices) - min(prices)
+
+print(f"Price Range: {price_range} AZN")
+
+
+"-------------Task B-----------------" 
+
+students = [
+    {"name": "Ali", "score": 85},
+    {"name": "Aysel", "score": 42},
+    {"name": "Murad", "score": 74},
+    {"name": "Leyla", "score": 90},
+    {"name": "Tərlan", "score": 38}
+]
+
+for student in students:
+    if student["score"] >= 50:
+        print(student["name"])
+
+"--------------Task C----------------"
+
+students = [
+    {"name": "Ali", "score": 85},
+    {"name": "Aysel", "score": 42},
+    {"name": "Murad", "score": 74},
+    {"name": "Leyla", "score": 90},
+    {"name": "Tərlan", "score": 38}
+]
+
+passed = 0
+total_score = 0
+
+for student in students:
+    if student["score"] >= 50:
+        passed += 1
+    total_score += student["score"]
+
+average = total_score / len(students)
+
+above_average = []
+
+for student in students:
+    if student["score"] > average:
+        above_average.append(student["name"])
+
+print("Passed students:", passed)
+print("Class average:", average)
+print("Above average:", above_average)
