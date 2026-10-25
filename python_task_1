@@ -1,0 +1,40 @@
+"Task A"
+
+card_total = int(input("Write yout payment: "))
+shipping_fee = 10
+
+if card_total < 100 :
+  final_payment = card_total + shipping_fee
+  print (final_payment)
+elif card_total >= 100 :
+  print (card_total)
+
+
+"Task B"
+
+age = 14
+
+if age < 12 :
+    print ("Ticket price is '5azn'")
+elif 12 <= age <= 60 : 
+    print ("Ticket price is '10azn'")
+else :
+    print ("Ticket price is '7azn'")
+
+
+"Task C"
+
+gross_salary = 2400
+
+if gross_salary <= 1000:
+    tax = gross_salary * 5 / 100
+elif gross_salary <= 2500:
+    tax = gross_salary * 10 / 100
+else:
+    tax = gross_salary * 15 / 100
+
+net = gross_salary - tax
+
+print(f"Gross: {gross_salary} AZN | Tax: {tax} AZN | Net: {net} AZN")
+
+
