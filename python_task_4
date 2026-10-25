@@ -1,0 +1,27 @@
+"-----------Task A------------"
+import pandas as pd
+
+data = {
+    "name": ["Aydan", "Rashad", "Gunel", "Murad", "Sevda", "Revan"],
+    "dept": ["IT", "HR", "IT", "Finance", "HR", "IT"],
+    "salary": [1200, 2400, 3500, 2000, 2500, 3000],
+    "performance": [88, 72, 95, 90, 68, 91]
+}
+
+df = pd.DataFrame(data)
+
+df["bonus"] = df["salary"] * 0.10
+
+print(df[["name", "salary", "bonus"]])
+
+"-----------Task B------------"
+
+filtered = df[(df["dept"] == "IT") & (df["performance"] >= 90)]
+
+print(filtered[["name", "dept", "performance"]])
+
+"-----------Task B------------"
+
+avg_salary = df.groupby("dept")["salary"].mean()
+
+print(avg_salary)
