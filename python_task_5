@@ -1,0 +1,54 @@
+"----------Task A----------"
+
+import matplotlib.pyplot as plt
+
+years = [2020, 2021, 2022, 2023, 2024]
+revenue = [130, 150, 140, 160, 180]
+
+plt.plot(years, revenue)
+plt.title("Annual Revenue")
+plt.show()
+
+"----------Task B----------"
+
+import matplotlib.pyplot as plt
+
+years = [2020, 2021, 2022, 2023, 2024]
+revenue = [130, 150, 140, 160, 180]
+
+plt.bar(years, revenue, color="skyblue")
+plt.xlabel("Year")
+plt.ylabel("Revenue (Thousand AZN)")
+plt.show()
+
+"----------Task C----------"
+
+import matplotlib.pyplot as plt
+
+years = [2020, 2021, 2022, 2023, 2024]
+revenue = [130, 150, 140, 160, 180]
+target = [140, 140, 150, 160, 170]
+
+plt.plot(
+    years,
+    revenue,
+    color="green",
+    marker="o",
+    label="Actual Revenue"
+)
+
+plt.plot(
+    years,
+    target,
+    color="red",
+    linestyle="--",
+    label="Target Revenue"
+)
+
+plt.title("Actual vs Target Revenue")
+plt.legend()
+plt.grid(True)
+
+plt.savefig("revenue_comparison.png")
+
+plt.show()
