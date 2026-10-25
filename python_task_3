@@ -1,0 +1,23 @@
+"------Task A-----"
+
+def is_even(number):
+    return number % 2 == 0
+
+print(is_even(7))
+
+"------Task B-----"
+
+def convert_currency(amount, rate=1.7):
+    return round(amount * rate, 2)
+
+print(convert_currency(50))
+
+"------Task C-----"
+
+import random
+
+def roll_dice():
+    return random.randint(1, 6)
+
+for i in range(5):
+    print(roll_dice())
