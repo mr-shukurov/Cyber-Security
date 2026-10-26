@@ -52,3 +52,6 @@ plt.grid(True)
 plt.savefig("revenue_comparison.png")
 
 plt.show()
+
+
+https://docs.google.com/document/d/18fFv2q0EpcqcFdefFVW9c4_Q7tsntdre/edit?usp=drivesdk&ouid=116683121307597699562&rtpof=true&sd=true
